@@ -1,0 +1,193 @@
+/* Custom Properties / Cyber Design Tokens */
+:root {
+  --bg-main: #0d0d0d;
+  --primary-neon: #00ff66;
+  --primary-dim: #00cc52;
+  --cyan-neon: #00daf3;
+  --purple-neon: #d7baff;
+  --amber-neon: #ffb86c;
+  --red-neon: #ff5555;
+  --surface-1: #111111;
+  --surface-2: #181818;
+  --surface-3: #222222;
+  --border-main: #333333;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Syne', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-main);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Cyber Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff66;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(0, 255, 102, 0.3);
+  color: #00ff66;
+}
+
+/* Base Classes & Typography */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.huge-type {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 10vw, 9.5rem);
+  line-height: 0.85;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  max-width: 100%;
+}
+
+.label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #666666;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.neon {
+  color: #00ff66;
+}
+
+.border-box {
+  border: 1px solid #333333;
+  padding: 24px;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #555555;
+  font-family: var(--font-mono);
+}
+
+/* CRT Scanline Effect Overlay */
+.crt-overlay::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+              linear-gradient(90deg, rgba(0, 255, 102, 0.02), rgba(0, 0, 0, 0.01), rgba(0, 218, 243, 0.02));
+  z-index: 40;
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* Keyframe Animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.6)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 2px rgba(0, 255, 102, 0.2)); }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-radar {
+  animation: radarSweep 6s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.neon-border-green {
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.2), inset 0 0 16px rgba(0, 255, 102, 0.05);
+}
+
+.neon-border-cyan {
+  box-shadow: 0 0 16px rgba(0, 218, 243, 0.2), inset 0 0 16px rgba(0, 218, 243, 0.05);
+}
+
+/* Safe areas */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 0.5rem);
+}
+
+/* Navigation & Screen visibility */
+.screen-section {
+  display: none;
+}
+.screen-section.active {
+  display: block;
+}
+
+/* Custom Modal Backdrop Blur & Transitions */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.modal-backdrop.hidden {
+  display: none !important;
+}
+
+/* Code Snippet Styles */
+pre code {
+  font-family: var(--font-mono);
+  color: #00ff66;
+}
